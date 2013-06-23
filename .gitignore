@@ -1,13 +1,156 @@
-# Compiled Object files
-*.slo
-*.lo
-*.o
+#include <stdio.h>
+#include <stdlib.h>
 
-# Compiled Dynamic libraries
-*.so
-*.dylib
+int main(void)
+{
+  char fechafac[10];
+    char numerofact[10];
+    char contacto[50];
+    char formapago[15];
+    char tipofac[15];
+    int codigobarra;
+    char nomproducto[50];
+    int cantidadproducto;
+    int preciocosto;
+    int subtotal;
+    int iva;
+    int cpiva5; // para saber la cantidad de productos ingresados que graban iva 5%
+    int cpiva10;// para saber la cantidad de productos ingresados que graban iva10%
+    int cpiva0;
+    int cpivaexe;// para saber la cantidad de productos ingresados que graban iva exenta
+    int totalproducto;// la cantidad de productos ingresados
+    int costo; // para saber el costo de los producto
+    int cantidadiva;// para saber la cantidad de iva grabado
+    int respuesta;// respuesta del usuario para continuar con la carga de datos.. si es si, va a continuar, sino, va a terminar
+    char condicional;
+                                 //es la condicional.. si respuesta es igual a condicional, va a continuar.. lo vamos a poner en un do while
 
-# Compiled Static libraries
-*.lai
-*.la
-*.a
+    int procosto ;// para saber el costo promedio de los productos
+    int proacu ;
+    int costo ;                       // para saber el costo de los productos
+    int iva5 ; // para saber el iva5
+    int iva10 ; // para saber el iva10
+
+    int ivaexe;// para saber el iva exenta
+    int tiva5;// porcentaje iva 5%
+    int tiva10;//porcentaje iva 10%
+	do
+		{
+			printf("Ingrese la fecha de la factura:       \n"); //mensaje a mostrar
+			//scanf("%c", &fechafac);
+			gets(fechafac);
+			//aca, leemos los datos ingresados que el usuario ingresa por teclado.. y lo guardamos en la variable, fechafac, que habiamos definido mas arriba.. no explico mas esta funcion en otra parte del codigo
+			//gets para datos tipos char
+
+			printf("Ingrese numero de factura(001-001-0000001):       \n");
+			//scanf("%s", &numerofact);
+			gets(numerofact);
+
+
+			printf("Ingrese el contacto:       \n");
+			//scanf("%s", &contacto);
+			gets(contacto);
+
+			printf("Ingrese la forma de pago(contado, credito):       \n");
+			//scanf("%s", &formapago);
+			gets(formapago);
+
+
+			printf("Ingrese tipo factura:       \n");
+			//scanf("%s", &tipofac);
+			gets(tipofac);
+
+			printf("Codigo de barra:       \n");
+			scanf("%d", &codigobarra);
+			//gets(codigobarra);
+
+
+			printf("Nombre del Producto:       \n");
+			//scanf("%s", &nomproducto);
+			gets(nomproducto);
+
+			printf("Cantidad:       \n");
+			scanf("%d", &cantidadproducto);
+			//gets(cantidadproducto);
+
+			printf("Precio Costo:       \n");
+			scanf("%d", &preciocosto);
+
+			printf("Iva:       \n");
+			printf("1: 5, 2=10, 3 =Exenta(0)");
+			scanf("%d", &iva);
+
+			if (iva==1);
+			{
+			iva5 = iva5 + iva;
+			cpiva5 = cpiva5 + 1;// para saber cuantos productos, gravan iva 5
+			tiva5 = iva5 /1.5;
+			}
+			//else;
+			if (iva==2);
+			{
+			iva10 = iva10 + iva;
+			cpiva10 = cpiva10 + 1;
+			// para saber cuantos productos, gravan iva 10
+			tiva10 = iva10 /1.1;
+			}
+			if(iva==2);
+			{
+			ivaexe = ivaexe + iva;
+			cpivaexe = cpivaexe + 1;
+			// para saber cuantos productos, gravan iva exenta, 0%
+			tiva0 = 0;
+			}
+			printf("Desea seguir con la carga de mercaderias:   \n");
+			scanf("%d", &respuesta);
+			//gets(respuesta);
+
+		}
+	while(respuesta==1);
+	
+	cantidadiva = tiva5 + tiva10;// sumamos la cantidad de iva, generado
+    proacu = proacu + preciocosto;// sumamos los costos de las mercaderias
+
+    subtotal = preciocosto * cantidadproducto;
+    para sacar el subtotal
+
+    procosto = proacu /2;// el promedio de los costos de mercaderia
+
+    totalproducto = totalproducto + cantidadproducto;
+    // aca sumo la cantidad de productos ingresados, para luego saber el total
+    // y lo guardo en la variable, totalproducto.. totalproducto, es igual a cero pero cuando se ingrese nuevo dato por el teclado
+    // ira incrementando, dependiendo de la cantidad que se ingrese
+
+    printf("La cantidad de productos ingresados fue %d", totalproducto);
+    printf("\n\n");// imprime espacio en blanco
+
+    printf("Costo de las mercaderias, fue %d", proacu);
+    printf("\n\n");// imprime espacio en blanco
+
+    printf("Promedio Costo %d", procosto);
+    printf("\n\n");// imprime espacio en blanco
+
+    printf("IVA5 %d", iva5);
+    printf("Cantidad de productos que graban iva 5 %d", cpiva5);
+    printf("IVA5 en %d", tiva5);
+    printf("\n\n");// imprime espacio en blanco
+
+    printf("IVA10 %d", iva10);
+    printf("Cantidad de productos que graban iva 10 %d",cpiva10);
+    printf("IVA10 en %d", tiva10);
+
+    printf("\n\n");// imprime espacio en blanco
+
+    printf("IVA0 %d", iva0);
+    printf("Cantidad de productos que graban iva0 %d", cpiva0);
+    printf("IVA0 en %d", tiva0);
+
+    printf("\n\n");// imprime espacio en blanco
+
+    printf("Total Iva %d", cantidadiva);
+
+    //system(" ");
+    //system ("cls");/*limpia la pantalla*/
+}
+//aca termina el programa, cuando el usuario ingrese no, caso contrario,sigue instruccion, comienza otra vez el programa
+// caso que termine el programa, se muestra al usuario los datos siguente
